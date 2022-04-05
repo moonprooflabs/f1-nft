@@ -21,7 +21,7 @@ task("deploy", "Deploy the smart contracts", async(taskArgs, hre) => {
 
   const accounts = await hre.ethers.getSigners();
   const F1_NFT = await hre.ethers.getContractFactory("F1_NFT");
-  const f1_NFT = await F1_NFT.deploy(1, 2, IFP_ENDPOINT);
+  const f1_NFT = await F1_NFT.deploy(1, 2, "ipfs://QmY3SBygbfzZo4TxsGER7ya5LfX7eiDKzRKzbnEDKGaLUz");
   await f1_NFT.deployed();
 
   console.log("Deployed");
@@ -46,17 +46,17 @@ task("mint", "mint Formula 1 NFT", async(taskArgs, hre) => {
 
 module.exports = {
   solidity: "0.8.9",
-   defaultNetwork: "rinkeby",
-   networks: {
-       hardhat: {
-         chainId: 1337
-       },
-       rinkeby: {
-         url: API_URL,
-         accounts: [`0x${PRIVATE_KEY}`]
-       }
-   },
-   etherscan: {
-     apiKey: API_KEY,
-   }
+  //  defaultNetwork: "rinkeby",
+  //  networks: {
+  //      hardhat: {
+  //        chainId: 1337
+  //      },
+  //      rinkeby: {
+  //        url: API_URL,
+  //        accounts: [`0x${PRIVATE_KEY}`]
+  //      }
+  //  },
+  //  etherscan: {
+  //    apiKey: API_KEY,
+  //  }
 };

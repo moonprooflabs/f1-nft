@@ -142,6 +142,10 @@ contract F1_NFT is ERC721 {
         mainSalePrice = price;
     }
 
+    function tokensMinted() public view returns(uint256 _tokens) {
+        return tokenID;
+    }
+
     // ----------------------------- //
     //  IPFS/OPEANSEA FUNCTIONALITY //
     // --------------------------  //
