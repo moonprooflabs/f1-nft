@@ -24,6 +24,16 @@ describe("F1_NFT", function() {
     let amount = await f1_nft.maxMintAmount();
   })
 
+  it ("should allow owner to withdraw", async function() {
+    await f1_nft.addToWhiteList([accounts[1].address]);
+    await f1_nft.toggleOn();
+    await f1_nft.connect(accounts[1]).mint(1, {value: ethers.utils.parseEther("10")});
+    await f1_nft.withdraw();
+
+    let balance0 = await ethers.provider.getBalance(accounts[0].address)
+    let balance1 = await ethers.provider.getBalance(accounts[1].address)  
+  })
+
   describe("Whitelisting", async function() {
     it("should allow owner to add a user to whitelist", async function() {
       await f1_nft.addToWhiteList([accounts[1].address]);

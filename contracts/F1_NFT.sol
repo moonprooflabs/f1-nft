@@ -101,6 +101,13 @@ contract F1_NFT is ERC721 {
         maxMintAmount = amount;
     }
 
+    /// @dev sends all funds to owner of the contract
+    function withdraw() public onlyOwner {
+        uint balance = address(this).balance;
+        (bool success, ) = payable(owner).call{value: balance}("");
+        require(success);
+    }
+
     // ----------------------------- //
     //  IPFS/OPEANSEA FUNCTIONALITY //
     // --------------------------  //
