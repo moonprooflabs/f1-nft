@@ -21,7 +21,7 @@ describe("F1_NFT", function() {
 
   it("should allow owner to change mint amount", async function() {
     await f1_nft.changeMintAmount(3);
-    let amount = await f1_nft.max_mint_amount();
+    let amount = await f1_nft.maxMintAmount();
   })
 
   describe("Whitelisting", async function() {
