@@ -45,7 +45,7 @@ task("mint", "mint Formula 1 NFT", async(taskArgs, hre) => {
 })
 
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.9"
   //  defaultNetwork: "rinkeby",
   //  networks: {
   //      hardhat: {

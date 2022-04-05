@@ -8,7 +8,6 @@ async function main() {
   const f1_nft = await f1_nftFactory.deploy("https://gateway.pinata.cloud/ipfs/Qmc83EFeq9jnFxksn8kG4CZoCy5r8kw9Mn4fGapMwoWZwe/", 2)
   
   console.log("test nft deployed to:", f1_nft.address);
-  
 }
 
 main()

@@ -14,7 +14,8 @@ contract F1_NFT is ERC721 {
     mapping(address => bool) public whiteListAddresses;
     mapping(address => uint256) public addressTokenCount;
     mapping(uint256 => string) public uriMap;
-    uint256 public tokenID = 1; // do we need to start this at 1?
+    uint256 public tokenID = 1; // starting at 1 because of IPFS data
+    uint256 private constant COLLECTION_MAX = 10000; // set 10k max to avoid over minting
 
     bool public active; // default value is false
 
@@ -53,10 +54,10 @@ contract F1_NFT is ERC721 {
         }
     }
 
-
     /// @param nftAmountToMint - # of NFTs specified to mint
     /// @dev mints tokens to wallet addresses 
     function mint(uint256 nftAmountToMint) public payable {
+      require(tokenID <= COLLECTION_MAX, "No more nfts available to mint");
       checkWhiteListRequirements(nftAmountToMint, msg.sender);
       
       for (uint256 i = 0; i < nftAmountToMint; i++) {
@@ -66,6 +67,10 @@ contract F1_NFT is ERC721 {
           tokenID++;
       }
     }
+
+    // TODO: put in an option to mint to deployers wallet for team giveaways
+    // we can't mint 1k because transaction will run out of gas
+    function mintForGiveAway() public onlyOwner {}
 
     // -----------  //
     //   HELPERS   //

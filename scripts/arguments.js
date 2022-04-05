@@ -1,7 +1,6 @@
 const { ethers } = require("hardhat");
 
 module.exports = [
-  ethers.utils.parseEther(".1"),
-  ethers.utils.parseEther(".2"),
-  "https://gateway.pinata.cloud/ipfs/QmToXqD4YkZfJd8BxLq9JEhFV5zqcZKyV5pjSsfuyYqRxu/"
+  "https://gateway.pinata.cloud/ipfs/Qmc83EFeq9jnFxksn8kG4CZoCy5r8kw9Mn4fGapMwoWZwe/",
+  2
 ];
