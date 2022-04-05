@@ -10,7 +10,7 @@ contract F1_NFT is ERC721 {
     address public owner;
     string public baseURI; 
     string public baseExtension = ".json";
-    uint256 public  max_mint_amount;
+    uint256 public  maxMintAmount;
     mapping(address => bool) public whiteListAddresses;
     mapping(address => uint256) public addressTokenCount;
     mapping(uint256 => string) public uriMap;
@@ -20,10 +20,10 @@ contract F1_NFT is ERC721 {
 
     constructor(
         string memory _newBaseURI,
-        uint _max_mint_amount
+        uint _maxMintAmount
     ) ERC721("f1_DAO", "f1") {
         owner = msg.sender;
-        max_mint_amount = _max_mint_amount;
+        maxMintAmount = _maxMintAmount;
         setBaseURI(_newBaseURI);
     }
 
@@ -32,11 +32,12 @@ contract F1_NFT is ERC721 {
         _;
     }
 
-    /// @dev toggle mint on or off
+    /// @dev toggle mint on
     function toggleOn() public onlyOwner {
         active = true;
     }
 
+    /// @dev toggle mint off
     function toggleOff() public onlyOwner {
         active = false;
     }
@@ -84,15 +85,15 @@ contract F1_NFT is ERC721 {
             whiteListAddresses[user] == true,
             "user address is not on whitelist"
         );
-        require(addressTokenCount[user] + nftAmountToMint <= max_mint_amount, "Account Address reached limit on Tokens");
+        require(addressTokenCount[user] + nftAmountToMint <= maxMintAmount, "Account Address reached limit on Tokens");
         require(
-            IERC721(address(this)).balanceOf(user) <= max_mint_amount,
+            IERC721(address(this)).balanceOf(user) <= maxMintAmount,
             "max amount you can have is 2 nfts"
         );
     }
 
     function changeMintAmount(uint amount) public onlyOwner {
-        max_mint_amount = amount;
+        maxMintAmount = amount;
     }
 
     // ----------------------------- //
