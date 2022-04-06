@@ -15,7 +15,7 @@ contract F1_NFT is ERC721 {
     mapping(address => uint256) public addressTokenCount;
     mapping(uint256 => string) public uriMap;
     uint256 public tokenID = 1; // starting at 1 because of IPFS data
-    uint256 private constant COLLECTION_MAX = 10000; // set 10k max to avoid over minting
+    uint256 private constant COLLECTION_MAX = 9000; // set 9k max to avoid over minting
     uint public amountMintedForGiveaways;
 
     bool public active; // default value is false
