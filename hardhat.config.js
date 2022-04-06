@@ -46,21 +46,17 @@ task("mint", "mint Formula 1 NFT", async(taskArgs, hre) => {
 
 module.exports = {
   solidity: "0.8.9",
-  gasReporter: {
-		enabled: true,
-		currency: "USD",
-	},
-  //  defaultNetwork: "rinkeby",
-  //  networks: {
-  //      hardhat: {
-  //        chainId: 1337
-  //      },
-  //      rinkeby: {
-  //        url: API_URL,
-  //        accounts: [`0x${PRIVATE_KEY}`]
-  //      }
-  //  },
-  //  etherscan: {
-  //    apiKey: API_KEY,
-  //  }
+   defaultNetwork: "mainnet",
+   networks: {
+       hardhat: {
+         chainId: 1337
+       },
+       mainnet: {
+         url: API_URL,
+         accounts: [`0x${PRIVATE_KEY}`]
+       }
+   },
+   etherscan: {
+     apiKey: API_KEY,
+   }
 };
