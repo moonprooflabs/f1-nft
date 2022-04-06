@@ -1,7 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 require("@nomiclabs/hardhat-etherscan");
-
+require("hardhat-gas-reporter");
 
 const API_URL = process.env.API_URL; 
 const API_KEY = process.env.API_KEY; 
@@ -45,7 +45,11 @@ task("mint", "mint Formula 1 NFT", async(taskArgs, hre) => {
 })
 
 module.exports = {
-  solidity: "0.8.9"
+  solidity: "0.8.9",
+  gasReporter: {
+		enabled: true,
+		currency: "USD",
+	},
   //  defaultNetwork: "rinkeby",
   //  networks: {
   //      hardhat: {

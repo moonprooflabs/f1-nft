@@ -16,6 +16,7 @@ contract F1_NFT is ERC721 {
     mapping(uint256 => string) public uriMap;
     uint256 public tokenID = 1; // starting at 1 because of IPFS data
     uint256 private constant COLLECTION_MAX = 10000; // set 10k max to avoid over minting
+    uint public amountMintedForGiveaways;
 
     bool public active; // default value is false
 
@@ -69,9 +70,18 @@ contract F1_NFT is ERC721 {
       }
     }
 
-    // TODO: put in an option to mint to deployers wallet for team giveaways
-    // we can't mint 1k because transaction will run out of gas
-    function mintForGiveAway() public onlyOwner {}
+    /// @param amount - # of NFTs specified to mint
+    /// @dev mints tokens to address for team giveaways
+    function mintForGiveAway(uint amount) public onlyOwner {
+        require(amountMintedForGiveaways <= 1000, "can only mint 1000 max for giveaways");
+        for (uint256 i = 0; i < amount; i++) {
+          _mint(msg.sender, tokenID);
+          uriMap[tokenID] = tokenURI(tokenID);
+          addressTokenCount[msg.sender]++;
+          tokenID++;
+      }
+      amountMintedForGiveaways++;
+    }
 
     // -----------  //
     //   HELPERS   //

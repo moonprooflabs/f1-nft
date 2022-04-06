@@ -46,6 +46,12 @@ describe("F1_NFT", function() {
     it("should revert if non-owner tries to add a user to the whitelist", async function() {
       await expect(f1_nft.connect(accounts[1]).addToWhiteList([accounts[2].address])).to.be.reverted;
     })
+    it("mint for giveaway", async function() {
+      await f1_nft.mintForGiveAway(2);
+      await f1_nft.mintForGiveAway(50);
+      let teamBalance = await f1_nft.balanceOf(accounts[0].address)
+      console.log(teamBalance)
+    })
 
   })
   
