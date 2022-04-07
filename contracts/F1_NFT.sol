@@ -22,9 +22,10 @@ contract F1_NFT is ERC721 {
 
     constructor(
         string memory _newBaseURI,
-        uint _maxMintAmount
+        uint _maxMintAmount,
+        address _owner
     ) ERC721("f1_DAO", "f1") {
-        owner = msg.sender;
+        owner = _owner;
         maxMintAmount = _maxMintAmount;
         setBaseURI(_newBaseURI);
     }
